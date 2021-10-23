@@ -23,6 +23,11 @@
             target="_blank"
           >Discord Community</a>
         </p>
+
+        <p class="subheading font-weight-regular">
+          For Axios test,
+          <br>This is a test. {{ info }}
+        </p>
       </v-col>
 
       <v-col
@@ -92,6 +97,8 @@
 </template>
 
 <script>
+  import axios from 'axios';
+
   export default {
     name: 'HelloWorld',
 
@@ -146,6 +153,18 @@
           href: 'https://vuetifyjs.com/getting-started/frequently-asked-questions',
         },
       ],
+      info: 'Test',
     }),
+
+    created() {
+      axios.get(process.env.VUE_APP_API_URL+'monthly_accounts')
+           .then(response => {
+           // JSON responses are automatically parsed.
+           this.info = response.data
+        })
+          .catch(e => {
+            this.errors.push(e)
+        })
+    }
   }
 </script>
