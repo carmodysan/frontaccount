@@ -27,6 +27,7 @@
         <p class="subheading font-weight-regular">
           For Axios test,
           <br>This is a test. {{ info }}
+          <br>This is error. {{ error }}
         </p>
       </v-col>
 
@@ -154,6 +155,7 @@
         },
       ],
       info: 'Test',
+      error: 'None',
     }),
 
     created() {
@@ -163,7 +165,8 @@
            this.info = response.data
         })
           .catch(e => {
-            this.errors.push(e)
+            this.errors.push(e);
+            this.error = e;
         })
     }
   }
